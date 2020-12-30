@@ -1,0 +1,29 @@
+library	ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity ParallelOut is
+port(
+	address_bus: in std_logic_vector(31 downto 0);
+	data_bus_in:  in std_logic_vector(31 downto 0);
+	data_io_out : out std_logic_vector(31 downto 0);
+	clock: in std_logic;
+	nMemWr:  in std_logic;
+	nRst: in std_logic
+);
+end ParallelOut;
+
+architecture pOut of ParallelOut is
+begin
+	process(clock,nRst)
+	begin
+		if nRst = '0' then
+			data_io_out  <= (others => '1');
+		elsif (clock'event and clock = '0') then
+			if nMemWr = '0' and address_bus = x"00008000" then -- address is 0x8000
+				data_io_out  <= data_bus_in;
+			end if;
+		end if;
+	end process;
+end architecture;

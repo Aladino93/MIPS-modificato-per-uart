@@ -1,0 +1,45 @@
+library	ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+
+package opcodes is
+
+
+  -- register definition
+  constant R0: std_logic_vector(4 downto 0) := "00000";
+  constant R1: std_logic_vector(4 downto 0) := "00001";
+  constant R2: std_logic_vector(4 downto 0) := "00010";
+  constant R3: std_logic_vector(4 downto 0) := "00011";
+  constant R4: std_logic_vector(4 downto 0) := "00100";
+  constant R5: std_logic_vector(4 downto 0) := "00101";
+  constant R6: std_logic_vector(4 downto 0) := "00110";
+  constant R7: std_logic_vector(4 downto 0) := "00111";
+
+
+  -- opcode definition
+  constant NOP:         std_logic_vector(31 downto 0) := (others => '0');
+
+  constant R_TYPE:      std_logic_vector(5 downto 0) := "000000";
+  constant ADD_I:       std_logic_vector(5 downto 0) := "001000";
+  constant BEQ:         std_logic_vector(5 downto 0) := "000100";
+  constant BNE:         std_logic_vector(5 downto 0) := "000101";
+  constant LB:          std_logic_vector(5 downto 0) := "100000";
+  constant LH:          std_logic_vector(5 downto 0) := "100001";
+  constant LW:          std_logic_vector(5 downto 0) := "100011";
+  constant SB:          std_logic_vector(5 downto 0) := "101000";
+  constant SH:          std_logic_vector(5 downto 0) := "101001";
+  constant SW:          std_logic_vector(5 downto 0) := "101011";
+
+
+  constant JUMP:        std_logic_vector(5 downto 0) := "000010";
+
+  -- function for R_TYPE opcodes
+
+  constant R_TYPE_ADD:      std_logic_vector(5 downto 0) := "100000";
+  constant R_TYPE_MOVZ:     std_logic_vector(5 downto 0) := "001010";
+
+
+end package opcodes;
+

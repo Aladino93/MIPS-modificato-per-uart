@@ -1,0 +1,16 @@
+Fitter Status : Successful - Tue Sep 10 11:32:41 2019
+Quartus II 32-bit Version : 12.0 Build 263 08/02/2012 SP 2 SJ Web Edition
+Revision Name : SoC
+Top-level Entity Name : SoC
+Family : Cyclone III
+Device : EP3C16F484C6
+Timing Models : Final
+Total logic elements : 1,684 / 15,408 ( 11 % )
+    Total combinational functions : 1,631 / 15,408 ( 11 % )
+    Dedicated logic registers : 511 / 15,408 ( 3 % )
+Total registers : 513
+Total pins : 36 / 347 ( 10 % )
+Total virtual pins : 0
+Total memory bits : 0 / 516,096 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 112 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

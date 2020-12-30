@@ -1,0 +1,44 @@
+library	ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+use work.opcodes.all;
+
+entity rom is
+port(
+	data_bus_out: out std_logic_vector(7 downto 0);
+	address_bus:  in std_logic_vector(7 downto 0);
+	mem_rd:	in std_logic;
+	clock: in std_logic
+);
+end rom;
+
+architecture rom_arch of rom is
+
+signal out_byte: std_logic_vector(7 downto 0);
+begin
+	process(clock)
+	begin
+		if (clock'event and clock = '0') then -- falling edge
+			if mem_rd = '1' then
+				case address_bus is					
+					when "00000000" =>	out_byte <= LOAD_IMM;
+					when "00000001" =>	out_byte <= "00000000";
+					when "00000010" =>	out_byte <= OUTPORT;
+					when "00000011" =>	out_byte <= "10000000";
+					when "00000100" =>	out_byte <= ADD_IMM;
+					when "00000101" =>	out_byte <= "00000001";
+					when "00000110" =>	out_byte <= JMP;
+					when "00000111" =>	out_byte <= "00000010";
+					when others => 		out_byte <= HALT;
+				end case;
+			else
+				out_byte <= "ZZZZZZZZ";
+			end if;
+		end if;
+
+	end process;
+
+	data_bus_out <= out_byte;
+	
+end architecture;

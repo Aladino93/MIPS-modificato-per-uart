@@ -1,0 +1,636 @@
+Analysis & Synthesis report for SoC
+Tue Sep 10 11:32:25 2019
+Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |SoC|CPU:inst|state
+  9. State Machine - |SoC|ParallelInOut:inst1|UART:uart_i|UART_RX:uart_rx_i|rx_pstate
+ 10. State Machine - |SoC|ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i|tx_pstate
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Parameter Settings for User Entity Instance: ParallelInOut:inst1
+ 15. Parameter Settings for User Entity Instance: ParallelInOut:inst1|UART:uart_i
+ 16. Parameter Settings for User Entity Instance: ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i
+ 17. Parameter Settings for User Entity Instance: ParallelInOut:inst1|UART:uart_i|UART_RX:uart_rx_i
+ 18. Port Connectivity Checks: "ParallelInOut:inst1|UART:uart_i"
+ 19. Elapsed Time Per Partition
+ 20. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2012 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                       ;
++------------------------------------+-----------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue Sep 10 11:32:25 2019         ;
+; Quartus II 32-bit Version          ; 12.0 Build 263 08/02/2012 SP 2 SJ Web Edition ;
+; Revision Name                      ; SoC                                           ;
+; Top-level Entity Name              ; SoC                                           ;
+; Family                             ; Cyclone III                                   ;
+; Total logic elements               ; 1,679                                         ;
+;     Total combinational functions  ; 1,630                                         ;
+;     Dedicated logic registers      ; 512                                           ;
+; Total registers                    ; 512                                           ;
+; Total pins                         ; 36                                            ;
+; Total virtual pins                 ; 0                                             ;
+; Total memory bits                  ; 0                                             ;
+; Embedded Multiplier 9-bit elements ; 0                                             ;
+; Total PLLs                         ; 0                                             ;
++------------------------------------+-----------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP3C16F484C6       ;                    ;
+; Top-level entity name                                                      ; SoC                ; SoC                ;
+; Family name                                                                ; Cyclone III        ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 8      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                            ;
++----------------------------------+-----------------+------------------------------------+---------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                  ; Library ;
++----------------------------------+-----------------+------------------------------------+---------------------------------------------------------------+---------+
+; uart_tx.vhd                      ; yes             ; User VHDL File                     ; D:/progetti enrico mainetti/PROGETTONE/MIPS/uart_tx.vhd       ;         ;
+; uart_rx.vhd                      ; yes             ; User VHDL File                     ; D:/progetti enrico mainetti/PROGETTONE/MIPS/uart_rx.vhd       ;         ;
+; uart_parity.vhd                  ; yes             ; User VHDL File                     ; D:/progetti enrico mainetti/PROGETTONE/MIPS/uart_parity.vhd   ;         ;
+; uart.vhd                         ; yes             ; User VHDL File                     ; D:/progetti enrico mainetti/PROGETTONE/MIPS/uart.vhd          ;         ;
+; hex_decoder.vhd                  ; yes             ; User VHDL File                     ; D:/progetti enrico mainetti/PROGETTONE/MIPS/hex_decoder.vhd   ;         ;
+; rom.vhd                          ; yes             ; User VHDL File                     ; D:/progetti enrico mainetti/PROGETTONE/MIPS/rom.vhd           ;         ;
+; cpu.vhd                          ; yes             ; User VHDL File                     ; D:/progetti enrico mainetti/PROGETTONE/MIPS/cpu.vhd           ;         ;
+; opcodes.vhd                      ; yes             ; User VHDL File                     ; D:/progetti enrico mainetti/PROGETTONE/MIPS/opcodes.vhd       ;         ;
+; SoC.bdf                          ; yes             ; User Block Diagram/Schematic File  ; D:/progetti enrico mainetti/PROGETTONE/MIPS/SoC.bdf           ;         ;
+; ParallelInOut.vhd                ; yes             ; User VHDL File                     ; D:/progetti enrico mainetti/PROGETTONE/MIPS/ParallelInOut.vhd ;         ;
++----------------------------------+-----------------+------------------------------------+---------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimated Total logic elements              ; 1,679          ;
+;                                             ;                ;
+; Total combinational functions               ; 1630           ;
+; Logic element usage by number of LUT inputs ;                ;
+;     -- 4 input functions                    ; 1012           ;
+;     -- 3 input functions                    ; 363            ;
+;     -- <=2 input functions                  ; 255            ;
+;                                             ;                ;
+; Logic elements by mode                      ;                ;
+;     -- normal mode                          ; 1471           ;
+;     -- arithmetic mode                      ; 159            ;
+;                                             ;                ;
+; Total registers                             ; 512            ;
+;     -- Dedicated logic registers            ; 512            ;
+;     -- I/O registers                        ; 0              ;
+;                                             ;                ;
+; I/O pins                                    ; 36             ;
+; Maximum fan-out node                        ; CLOCK_50~input ;
+; Maximum fan-out                             ; 513            ;
+; Total fan-out                               ; 7510           ;
+; Average fan-out                             ; 3.39           ;
++---------------------------------------------+----------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                              ;
++------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------+--------------+
+; Compilation Hierarchy Node   ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                    ; Library Name ;
++------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------+--------------+
+; |SoC                         ; 1630 (0)          ; 512 (0)      ; 0           ; 0            ; 0       ; 0         ; 36   ; 0            ; |SoC                                                   ;              ;
+;    |CPU:inst|                ; 1432 (1432)       ; 425 (425)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SoC|CPU:inst                                          ;              ;
+;    |ParallelInOut:inst1|     ; 119 (43)          ; 87 (34)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SoC|ParallelInOut:inst1                               ;              ;
+;       |UART:uart_i|          ; 76 (13)           ; 53 (11)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SoC|ParallelInOut:inst1|UART:uart_i                   ;              ;
+;          |UART_RX:uart_rx_i| ; 26 (26)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SoC|ParallelInOut:inst1|UART:uart_i|UART_RX:uart_rx_i ;              ;
+;          |UART_TX:uart_tx_i| ; 37 (37)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SoC|ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i ;              ;
+;    |hex_decoder:digit0|      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SoC|hex_decoder:digit0                                ;              ;
+;    |hex_decoder:digit1|      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SoC|hex_decoder:digit1                                ;              ;
+;    |hex_decoder:digit2|      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SoC|hex_decoder:digit2                                ;              ;
+;    |hex_decoder:digit3|      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SoC|hex_decoder:digit3                                ;              ;
+;    |rom:inst2|               ; 51 (51)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SoC|rom:inst2                                         ;              ;
++------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------+
+; State Machine - |SoC|CPU:inst|state                                                                     ;
++------------------+---------------+---------------+------------------+------------------+----------------+
+; Name             ; state.st_halt ; state.st_exec ; state.st_fetch_1 ; state.st_fetch_0 ; state.st_reset ;
++------------------+---------------+---------------+------------------+------------------+----------------+
+; state.st_reset   ; 0             ; 0             ; 0                ; 0                ; 0              ;
+; state.st_fetch_0 ; 0             ; 0             ; 0                ; 1                ; 1              ;
+; state.st_fetch_1 ; 0             ; 0             ; 1                ; 0                ; 1              ;
+; state.st_exec    ; 0             ; 1             ; 0                ; 0                ; 1              ;
+; state.st_halt    ; 1             ; 0             ; 0                ; 0                ; 1              ;
++------------------+---------------+---------------+------------------+------------------+----------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |SoC|ParallelInOut:inst1|UART:uart_i|UART_RX:uart_rx_i|rx_pstate                                         ;
++---------------------+-------------------+---------------------+--------------------+--------------------+----------------+
+; Name                ; rx_pstate.stopbit ; rx_pstate.paritybit ; rx_pstate.databits ; rx_pstate.startbit ; rx_pstate.idle ;
++---------------------+-------------------+---------------------+--------------------+--------------------+----------------+
+; rx_pstate.idle      ; 0                 ; 0                   ; 0                  ; 0                  ; 0              ;
+; rx_pstate.startbit  ; 0                 ; 0                   ; 0                  ; 1                  ; 1              ;
+; rx_pstate.databits  ; 0                 ; 0                   ; 1                  ; 0                  ; 1              ;
+; rx_pstate.paritybit ; 0                 ; 1                   ; 0                  ; 0                  ; 1              ;
+; rx_pstate.stopbit   ; 1                 ; 0                   ; 0                  ; 0                  ; 1              ;
++---------------------+-------------------+---------------------+--------------------+--------------------+----------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |SoC|ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i|tx_pstate                                                            ;
++---------------------+-------------------+---------------------+--------------------+--------------------+------------------+----------------+
+; Name                ; tx_pstate.stopbit ; tx_pstate.paritybit ; tx_pstate.databits ; tx_pstate.startbit ; tx_pstate.txsync ; tx_pstate.idle ;
++---------------------+-------------------+---------------------+--------------------+--------------------+------------------+----------------+
+; tx_pstate.idle      ; 0                 ; 0                   ; 0                  ; 0                  ; 0                ; 0              ;
+; tx_pstate.txsync    ; 0                 ; 0                   ; 0                  ; 0                  ; 1                ; 1              ;
+; tx_pstate.startbit  ; 0                 ; 0                   ; 0                  ; 1                  ; 0                ; 1              ;
+; tx_pstate.databits  ; 0                 ; 0                   ; 1                  ; 0                  ; 0                ; 1              ;
+; tx_pstate.paritybit ; 0                 ; 1                   ; 0                  ; 0                  ; 0                ; 1              ;
+; tx_pstate.stopbit   ; 1                 ; 0                   ; 0                  ; 0                  ; 0                ; 1              ;
++---------------------+-------------------+---------------------+--------------------+--------------------+------------------+----------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                     ;
++-----------------------------------------------------------------------+------------------------------------------------+
+; Register name                                                         ; Reason for Removal                             ;
++-----------------------------------------------------------------------+------------------------------------------------+
+; ParallelInOut:inst1|data_bus[31]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[30]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[29]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[28]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[27]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[26]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[25]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[24]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[23]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[22]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[21]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[20]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[19]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[18]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[17]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[16]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[15]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[14]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[13]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[12]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[11]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[10]~reg0                                 ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[9]~reg0                                  ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[8]~reg0                                  ; Stuck at GND due to stuck port data_in         ;
+; CPU:inst|address_bus[27]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[26]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[25]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[24]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[23]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[22]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[21]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[20]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[19]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[18]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[17]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[16]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[15]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[14]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[13]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[12]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[11]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[10]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[9]~en                                            ; Lost fanout                                    ;
+; CPU:inst|address_bus[8]~en                                            ; Lost fanout                                    ;
+; CPU:inst|address_bus[7]~en                                            ; Lost fanout                                    ;
+; CPU:inst|address_bus[6]~en                                            ; Lost fanout                                    ;
+; CPU:inst|address_bus[5]~en                                            ; Lost fanout                                    ;
+; CPU:inst|address_bus[4]~en                                            ; Lost fanout                                    ;
+; CPU:inst|address_bus[3]~en                                            ; Lost fanout                                    ;
+; CPU:inst|address_bus[2]~en                                            ; Lost fanout                                    ;
+; CPU:inst|address_bus[1]~en                                            ; Lost fanout                                    ;
+; CPU:inst|address_bus[0]~en                                            ; Lost fanout                                    ;
+; CPU:inst|address_bus[28]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[29]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[30]~en                                           ; Lost fanout                                    ;
+; CPU:inst|address_bus[31]~en                                           ; Lost fanout                                    ;
+; ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i|tx_pstate.paritybit ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|UART:uart_i|UART_RX:uart_rx_i|rx_pstate.paritybit ; Stuck at GND due to stuck port data_in         ;
+; ParallelInOut:inst1|data_bus[1]~en                                    ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[2]~en                                    ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[3]~en                                    ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[4]~en                                    ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[5]~en                                    ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[6]~en                                    ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[7]~en                                    ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[8]~en                                    ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[9]~en                                    ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[10]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[11]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[12]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[13]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[14]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[15]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[16]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[17]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[18]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[19]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[20]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[21]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[22]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[23]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[24]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[25]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[26]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[27]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[28]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[29]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[30]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; ParallelInOut:inst1|data_bus[31]~en                                   ; Merged with ParallelInOut:inst1|data_bus[0]~en ;
+; Total Number of Removed Registers = 89                                ;                                                ;
++-----------------------------------------------------------------------+------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 512   ;
+; Number of registers using Synchronous Clear  ; 13    ;
+; Number of registers using Synchronous Load   ; 131   ;
+; Number of registers using Asynchronous Clear ; 23    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 483   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------------------------------------------------------------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered                                                             ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------------------------------------------------------------------+----------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; |SoC|ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i|tx_data[0]      ;                            ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; |SoC|ParallelInOut:inst1|UART:uart_i|UART_RX:uart_rx_i|rx_data[6]      ;                            ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; |SoC|ParallelInOut:inst1|UART:uart_i|uart_ticks[4]                     ;                            ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |SoC|ParallelInOut:inst1|UART:uart_i|UART_RX:uart_rx_i|rx_bit_count[0] ;                            ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |SoC|ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i|tx_bit_count[2] ;                            ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; |SoC|ParallelInOut:inst1|UART:uart_i|UART_RX:uart_rx_i|rx_ticks[2]     ;                            ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; |SoC|ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i|tx_ticks[0]     ;                            ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; |SoC|ParallelInOut:inst1|data_output[14]                               ;                            ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; |SoC|ParallelInOut:inst1|data_output[3]                                ;                            ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; |SoC|CPU:inst|address_bus[19]~reg0                                     ;                            ;
+; 70:1               ; 6 bits    ; 276 LEs       ; 6 LEs                ; 270 LEs                ; |SoC|CPU:inst|PC[26]                                                   ;                            ;
+; 70:1               ; 10 bits   ; 460 LEs       ; 20 LEs               ; 440 LEs                ; |SoC|CPU:inst|PC[23]                                                   ;                            ;
+; 70:1               ; 16 bits   ; 736 LEs       ; 32 LEs               ; 704 LEs                ; |SoC|CPU:inst|PC[12]                                                   ;                            ;
+; 1:1                ; 32 bits   ; 0 LEs         ; 0 LEs                ; 0 LEs                  ; |SoC|CPU:inst|data_bus[24]~reg0                                        ;                            ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; |SoC|CPU:inst|Mux23                                                    ;                            ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; |SoC|CPU:inst|Mux62                                                    ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 64 LEs               ; 784 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 80 LEs               ; 768 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 64 LEs               ; 784 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 80 LEs               ; 768 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 64 LEs               ; 784 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 80 LEs               ; 768 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 64 LEs               ; 784 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 80 LEs               ; 768 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 64 LEs               ; 784 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 80 LEs               ; 768 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 64 LEs               ; 784 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 80 LEs               ; 768 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 64 LEs               ; 784 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 80 LEs               ; 768 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 64 LEs               ; 784 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
+; 80:1               ; 16 bits   ; 848 LEs       ; 80 LEs               ; 768 LEs                ; |SoC|CPU:inst|REGS                                                     ;                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------------------------------------------------------------------+----------------------------+
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ParallelInOut:inst1 ;
++----------------+----------+--------------------------------------+
+; Parameter Name ; Value    ; Type                                 ;
++----------------+----------+--------------------------------------+
+; clk_freq       ; 50000000 ; Signed Integer                       ;
+; baud_rate      ; 115200   ; Signed Integer                       ;
+; parity_bit     ; none     ; String                               ;
++----------------+----------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ParallelInOut:inst1|UART:uart_i ;
++----------------+----------+--------------------------------------------------+
+; Parameter Name ; Value    ; Type                                             ;
++----------------+----------+--------------------------------------------------+
+; clk_freq       ; 50000000 ; Signed Integer                                   ;
+; baud_rate      ; 115200   ; Signed Integer                                   ;
+; parity_bit     ; none     ; String                                           ;
++----------------+----------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i ;
++----------------+-------+-----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                  ;
++----------------+-------+-----------------------------------------------------------------------+
+; parity_bit     ; none  ; String                                                                ;
++----------------+-------+-----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ParallelInOut:inst1|UART:uart_i|UART_RX:uart_rx_i ;
++----------------+-------+-----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                  ;
++----------------+-------+-----------------------------------------------------------------------+
+; parity_bit     ; none  ; String                                                                ;
++----------------+-------+-----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ParallelInOut:inst1|UART:uart_i"                                                           ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; data_vld    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; frame_error ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:06     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit Analysis & Synthesis
+    Info: Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+    Info: Processing started: Tue Sep 10 11:32:16 2019
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off SoC -c SoC
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file uart_tx.vhd
+    Info (12022): Found design unit 1: UART_TX-FULL
+    Info (12023): Found entity 1: UART_TX
+Info (12021): Found 2 design units, including 1 entities, in source file uart_rx.vhd
+    Info (12022): Found design unit 1: UART_RX-FULL
+    Info (12023): Found entity 1: UART_RX
+Info (12021): Found 2 design units, including 1 entities, in source file uart_parity.vhd
+    Info (12022): Found design unit 1: UART_PARITY-FULL
+    Info (12023): Found entity 1: UART_PARITY
+Info (12021): Found 2 design units, including 1 entities, in source file uart.vhd
+    Info (12022): Found design unit 1: UART-FULL
+    Info (12023): Found entity 1: UART
+Info (12021): Found 2 design units, including 1 entities, in source file hex_decoder.vhd
+    Info (12022): Found design unit 1: hex_decoder-hex_decoder_arch
+    Info (12023): Found entity 1: hex_decoder
+Info (12021): Found 2 design units, including 1 entities, in source file clock_divisor.vhd
+    Info (12022): Found design unit 1: clock_divisor-div
+    Info (12023): Found entity 1: clock_divisor
+Info (12021): Found 2 design units, including 1 entities, in source file rom.vhd
+    Info (12022): Found design unit 1: rom-rom_arch
+    Info (12023): Found entity 1: rom
+Info (12021): Found 2 design units, including 1 entities, in source file cpu.vhd
+    Info (12022): Found design unit 1: CPU-my_CPU
+    Info (12023): Found entity 1: CPU
+Info (12021): Found 1 design units, including 0 entities, in source file opcodes.vhd
+    Info (12022): Found design unit 1: opcodes
+Info (12021): Found 1 design units, including 1 entities, in source file soc.bdf
+    Info (12023): Found entity 1: SoC
+Info (12021): Found 2 design units, including 1 entities, in source file parallelinout.vhd
+    Info (12022): Found design unit 1: ParallelInOut-pInOut
+    Info (12023): Found entity 1: ParallelInOut
+Info (12127): Elaborating entity "SoC" for the top level hierarchy
+Warning (275086): Found inconsistent I/O type for element "GPIO_0"
+Warning (275080): Converted elements in bus name "GPIO_0" using legacy naming rules. Make any assignments on the new names, not on the original names.
+    Warning (275081): Converted element name(s) from "GPIO_0[0]" to "GPIO_00"
+    Warning (275081): Converted element name(s) from "GPIO_0[2]" to "GPIO_02"
+    Warning (275081): Converted element name(s) from "GPIO_0[1]" to "GPIO_01"
+Info (12128): Elaborating entity "ParallelInOut" for hierarchy "ParallelInOut:inst1"
+Warning (10036): Verilog HDL or VHDL warning at ParallelInOut.vhd(31): object "data_vld" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at ParallelInOut.vhd(32): object "frame_error" assigned a value but never read
+Info (12128): Elaborating entity "UART" for hierarchy "ParallelInOut:inst1|UART:uart_i"
+Info (12128): Elaborating entity "UART_TX" for hierarchy "ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i"
+Info (12128): Elaborating entity "UART_RX" for hierarchy "ParallelInOut:inst1|UART:uart_i|UART_RX:uart_rx_i"
+Warning (10036): Verilog HDL or VHDL warning at uart_rx.vhd(34): object "rx_parity_check_en" assigned a value but never read
+Info (12128): Elaborating entity "CPU" for hierarchy "CPU:inst"
+Warning (10036): Verilog HDL or VHDL warning at cpu.vhd(39): object "func" assigned a value but never read
+Info (12128): Elaborating entity "rom" for hierarchy "rom:inst2"
+Warning (10492): VHDL Process Statement warning at rom.vhd(22): signal "address_bus" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "hex_decoder" for hierarchy "hex_decoder:digit0"
+Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[27]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[26]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[25]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[24]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[23]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[22]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[21]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[20]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[19]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[18]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[17]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[16]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[15]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[14]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[13]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[12]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[11]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[10]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[9]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[8]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[7]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[6]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[5]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[4]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[3]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[2]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[1]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[0]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[28]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[29]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[30]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "CPU:inst|address_bus[31]" feeding internal logic into a wire
+    Warning (13049): Converted tri-state buffer "ParallelInOut:inst1|UART:uart_i|UART_TX:uart_tx_i|tx_parity_bit" feeding internal logic into a wire
+Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[0]" to the node "ParallelInOut:inst1|data_in[0]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[1]" to the node "ParallelInOut:inst1|data_in[1]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[2]" to the node "ParallelInOut:inst1|data_in[2]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[3]" to the node "ParallelInOut:inst1|data_in[3]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[4]" to the node "ParallelInOut:inst1|data_in[4]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[5]" to the node "ParallelInOut:inst1|data_in[5]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[6]" to the node "ParallelInOut:inst1|data_in[6]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[7]" to the node "ParallelInOut:inst1|data_in[7]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[8]" to the node "ParallelInOut:inst1|data_output" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[9]" to the node "ParallelInOut:inst1|data_output" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[10]" to the node "ParallelInOut:inst1|data_output" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[11]" to the node "ParallelInOut:inst1|data_output" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "ParallelInOut:inst1|data_bus[12]" to the node "ParallelInOut:inst1|data_output" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[13]" to the node "ParallelInOut:inst1|data_output" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[14]" to the node "ParallelInOut:inst1|data_output" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "ParallelInOut:inst1|data_bus[15]" to the node "ParallelInOut:inst1|data_output" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "ParallelInOut:inst1|data_bus[31]" to the node "CPU:inst|IR[31]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[22]" to the node "CPU:inst|IR[22]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "ParallelInOut:inst1|data_bus[21]" to the node "CPU:inst|IR[21]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[23]" to the node "CPU:inst|IR[23]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[30]" to the node "CPU:inst|IR[30]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "ParallelInOut:inst1|data_bus[29]" to the node "CPU:inst|IR[29]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "ParallelInOut:inst1|data_bus[28]" to the node "CPU:inst|IR[28]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "ParallelInOut:inst1|data_bus[27]" to the node "CPU:inst|IR[27]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "ParallelInOut:inst1|data_bus[26]" to the node "CPU:inst|IR[26]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[25]" to the node "CPU:inst|IR[25]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[24]" to the node "CPU:inst|IR[24]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[20]" to the node "CPU:inst|IR[20]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[19]" to the node "CPU:inst|IR[19]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom:inst2|data_bus_out[18]" to the node "CPU:inst|IR[18]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "ParallelInOut:inst1|data_bus[17]" to the node "CPU:inst|IR[17]" into an OR gate
+    Warning (13047): Converted the fan-out from the tri-state buffer "ParallelInOut:inst1|data_bus[16]" to the node "CPU:inst|IR[16]" into an OR gate
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 32 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "SW[1]"
+    Warning (15610): No output dependent on input pin "SW[0]"
+Info (21057): Implemented 1780 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
+    Info (21059): Implemented 31 output pins
+    Info (21061): Implemented 1744 logic cells
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 81 warnings
+    Info: Peak virtual memory: 382 megabytes
+    Info: Processing ended: Tue Sep 10 11:32:25 2019
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:08
+
+

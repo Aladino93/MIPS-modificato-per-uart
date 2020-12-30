@@ -1,0 +1,48 @@
+
+
+MIPS-like Processor
+
+31                                                            0
++------------+------------------------------------------------+
+| opcode (6) | Other (26)                                     |
++------------+------------------------------------------------+
+
+
+Register-type instructions
+
++--------+-------+-------+-------+-------+-------+
+| 000000 | rs(5) | rt(5) | rd(5) |  p(5) | fn(6) |
++--------+-------+-------+-------+-------+-------+
+
+rs = source register
+rt = second registers
+rd = destination register
+ p = additional parameter
+fn = function
+
+Functions =
+add rd, rs, rt   - "100000" -> rd = rs + rt
+movz rd, rs, rt  - "001010" -> rd = rs, if rt == 0
+nop - "000000"
+
+Immediate-type instructions
+
++-----------+-------+-------+---------------+
+| opcode(6) | rs(5) | rt(5) | immediate(16) |
++-----------+-------+-------+---------------+
+
+rs = source register
+rt = second registers
+immediate value
+
+opcode  - instruction
+001000    addi rt,rs, immediate
+000100    beq rt,rs, immediate
+000101    bne rt,rs, immediate
+100000    lb rt, immediate(rs)
+100001    lh rt, immediate(rs)
+100011    lw rt, immediate(rs)
+101000    sb rt, immediate(rs)
+101001    sh rt, immediate(rs)
+101011    sw rt, immediate(rs)
+

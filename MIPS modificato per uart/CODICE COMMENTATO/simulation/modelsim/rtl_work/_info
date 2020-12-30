@@ -1,0 +1,58 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\progetti enrico mainetti\PROGETTONE\MIPS\simulation\modelsim
+Ehex_decoder
+w1462454318
+Z1 DPx3 std 6 textio 0 22 G^o2zK;Vh4eVdKTVo98653
+Z2 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z3 dD:\progetti enrico mainetti\PROGETTONE\MIPS\simulation\modelsim
+8D:/progetti enrico mainetti/PROGETTONE/MIPS/hex_decoder.vhd
+FD:/progetti enrico mainetti/PROGETTONE/MIPS/hex_decoder.vhd
+l0
+L4
+V8lVSeLHXD>kje9=[n9D1i0
+!s100 QSkGN:3=@DEW@_fbj<h^b3
+Z4 OV;C;10.0d;49
+31
+!s108 1566311143.610000
+!s90 -reportprogress|300|-93|-work|work|D:/progetti enrico mainetti/PROGETTONE/MIPS/hex_decoder.vhd|
+!s107 D:/progetti enrico mainetti/PROGETTONE/MIPS/hex_decoder.vhd|
+Z5 o-93 -work work -O0
+Z6 tExplicit 1
+Euart_parity
+Z7 w1559305816
+Z8 DPx4 ieee 11 numeric_std 0 22 k7B<7GmYYYmX;0X]XHFD10
+R1
+R2
+R3
+Z9 8D:/progetti enrico mainetti/PROGETTONE/MIPS/uart_parity.vhd
+Z10 FD:/progetti enrico mainetti/PROGETTONE/MIPS/uart_parity.vhd
+l0
+L14
+V@A>0VP8]3P^Id[JMNmS2C0
+R4
+31
+Z11 !s108 1566311143.420000
+Z12 !s90 -reportprogress|300|-93|-work|work|D:/progetti enrico mainetti/PROGETTONE/MIPS/uart_parity.vhd|
+Z13 !s107 D:/progetti enrico mainetti/PROGETTONE/MIPS/uart_parity.vhd|
+R5
+R6
+!s100 S1=m>DHCZ=zzTlM^:[d8:1
+Afull
+R8
+R1
+R2
+DEx4 work 11 uart_parity 0 22 @A>0VP8]3P^Id[JMNmS2C0
+l27
+L25
+VQT5_[DBbD3QH^N=IkMm_82
+R4
+31
+R11
+R12
+R13
+R5
+R6
+!s100 42HcXM25kiP=N@A3O9iSn0

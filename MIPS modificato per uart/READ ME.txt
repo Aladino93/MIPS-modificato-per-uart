@@ -1,0 +1,19 @@
+CONTENUTO DEL PROGETTO
+
+Nella cartella sono presenti i vari file che compongono una CPU e una periferica UART.
+La CPU ricalca la struttura MIPS (microprocessor without interlocked pipeline stages) e presenta un set di comandi RISC (consultabili presso http://www.dmi.unict.it/~santoro/teaching/sdl/slides/Soc.pdf).
+La periferica Uart seriale a 8 bit dialoga con la cpu solo quando specifici indirizzi di memoria vengono interrogati (x8000 per la lettura e x9000 per la scrittura) e a livello di codice si può implementare il parity bit (di default non è presente) oltre che il baudrate (di default 115200).
+Il codice che viene eseguito dalla CPU è presente all'interno del modulo ROM e inoltre è implementata anche la parte di codice per la scrittura di numeri sul display.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ISTRUZIONI D'USO
+
+Per poter eseguire il progetto è necessario l'utilizzo di quartusII. Il progetto si apre cliccando su SOC.qpf che permette di visualizzare come progetto unico tutti i file della cartella e caricare anche gli schematici utilizzati da quartusII.
+Nel progetto si trovano sia parti di codice scritte in vhdl che schemi a blocchi che definiscono le interconnessioni tra i differenti pezzi di codice.
+prima di poter caricare il progetto è necessario compilarlo e una volta compilato il progetto può essere caricato sull'fpga tramite il programmatore integrato sulla Altera Board DE0.
+Il programma precaricato sulla ROM mette in lettura l'fpga che aspetta sulla porta seriale il numero in binario 9 stampando sul display i valori che gli vengono di volta in volta inviati. Appena la condizione di lettura del numero 9 è rispettata si mette in modalità di trasmissione e continua a trasmettere il numero 9 finchè non riceve un numero diverso, in tal caso si rimette in attesa di ricevere il numero 9.
+Il programma può essere modificato cambiando il codice all'interno della ROM.
+
+N.B.
+Potrebbe esserci bisogno di specificare manualmente i pin della scheda che si sta usando (nel caso Assignment -> pin planner per la modifica dei pin) a cuasa di un bug di QuartusII che non sempre riesce ad assegnare correttamente i pin dallo schematico.

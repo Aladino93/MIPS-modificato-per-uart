@@ -1,0 +1,93 @@
+library	ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+use ieee.numeric_bit.all;
+use ieee.numeric_std.all;
+use work.opcodes.all;
+
+entity CPU is
+port(
+	clock:	in std_logic;
+	rst:		in std_logic;
+	data_bus:  inout std_logic_vector(31 downto 0);
+	address_bus:  out std_logic_vector(31 downto 0);
+	nMemRd:	out std_logic;
+	nMemWr:  out std_logic;
+        nHalt: out std_logic
+);
+
+end CPU;
+
+architecture my_CPU of CPU is
+	type state_type is (st_reset,
+                            st_fetch_0,
+                            st_fetch_1,
+                            st_exec_0,
+                            st_exec_1,
+                            st_exec_2,
+                            st_exec_3,
+                            st_halt);
+	signal PC: std_logic_vector(31 downto 0) := (others => '0');
+	signal IR: std_logic_vector(31 downto 0) := (others => '0');
+	signal REGS: array (0 to 31) of std_logic_vector(31 downto 0);
+	signal state: state_type := st_halt;
+	signal next_state: state_type := st_halt;
+begin
+  process(state)
+  begin
+    case state is
+
+      when st_reset =>
+        PC <= (others => '0');
+        nMemRd <= '1';
+        nMemWr <= '1';
+        data_bus <= (others => 'Z');
+        nHalt <= '1';
+        next_state <= st_fetch_0;
+
+      when st_fetch_0 =>
+        address_bus <= PC;
+        nMemRd <= '0';
+        next_state <= st_fetch_1;
+
+      when st_fetch_1 =>
+        IR <= data_bus;
+        nMemRd <= '1';
+        next_state <= st_exec_0;
+
+      when st_exec_0 =>
+
+          case IR(31 downto 26) is
+            when NOP =>                         -- nop
+              next_state <= st_fetch_0;
+
+            when others =>
+              next_state <= st_halt;
+          end case;
+
+      when st_halt =>
+
+        nMemRd <= '1';
+        nMemWr <= '1';
+        data_bus <= (others => 'Z');
+        nHalt <= '0';
+
+        next_state <= st_halt;
+    end case;
+  end process;
+
+  process(clock,rst)
+  begin
+
+    if (rst = '0') then
+      state <= st_reset;
+			
+    elsif (clock'event and clock = '1') then -- rising edge
+      PC <= PC + 1;
+      state <= next_state;
+    end if;
+  end process;
+
+end architecture;
+
